@@ -25,6 +25,11 @@ var string = `
         ${playlistSchema.query}
         ${playlistTrackSchema.query}
         ${trackSchema.query}
+        ${playlistTrackSchema.musicPlaylistTracks}
+    }
+
+    type Mutation {
+        getAlbums: [Album]
     }
 ${artistSchema.type}
 ${albumSchema.type}
@@ -37,6 +42,7 @@ ${mediaTypeSchema.type}
 ${playlistSchema.type}
 ${playlistTrackSchema.type}
 ${trackSchema.type}
+${playlistTrackSchema.musicPlayListTracksType}
 `
 
 module.exports = buildSchema(string)
