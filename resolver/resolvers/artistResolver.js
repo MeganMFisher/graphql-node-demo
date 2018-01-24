@@ -1,12 +1,12 @@
 const psql = require('../../dbConnection');
 
-var getUsers = function(args) {
-    const usersQuery = 'select id, name, email from users';
+var getArtists = function(args) {
+    const usersQuery = 'select * from "Artist"';
     return psql.manyOrNone(usersQuery, [], function(e){
         return e
     });
 }
 
 module.exports = {
-    users: getUsers
+    artists: getArtists
 }

@@ -1,14 +1,14 @@
 var { buildSchema } = require('graphql');
-const userSchema = require('./schemas/userSchema')
 const albumSchema = require('./schemas/albumSchema')
+const artistSchema = require('./schemas/artistSchema')
 
 
 var string = `
     type Query {
-        ${userSchema.query}
+        ${artistSchema.query}
         ${albumSchema.query}
     }
-${userSchema.type}
+${artistSchema.type}
 ${albumSchema.type}
 `
 
