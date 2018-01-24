@@ -6,7 +6,7 @@ module.exports = {
         InvoiceLineId: Int
         InvoiceId: Int
         TrackId: Int
-        UnitPrice: Int
+        UnitPrice: String
         Quantity: Int
     }`
 }
