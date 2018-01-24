@@ -1,10 +1,9 @@
-module.exports = `
-type Query {
-    users: [User]
-},
-type User {
-    id: Int
-    name: String,
-    email: String
+module.exports = {
+    query: 'users: [User]',
+    type: `
+    type User {
+        id: Int
+        name: String,
+        email: String
+    }`
 }
-`
