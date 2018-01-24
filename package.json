@@ -2,7 +2,7 @@
   "name": "graphql-node-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "server2.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,7 @@
     "express-graphql": "^0.6.11",
     "graphql": "^0.12.3",
     "lodash": "^4.17.4",
+    "pg-promise": "^7.4.0",
     "pug": "^2.0.0-rc.4"
   }
 }
