@@ -51,41 +51,7 @@ var { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
     type Query {
-<<<<<<< HEAD
-        ${artistSchema.query}
-        ${albumSchema.query}
-        ${customerSchema.query}
-        ${employeeSchema.query}
-        ${genreSchema.query}
-        ${invoiceSchema.query}
-        ${invoiceLineSchema.query}
-        ${mediaTypeSchema.query}
-        ${playlistSchema.query}
-        ${playlistTrackSchema.query}
-        ${trackSchema.query}
-        ${invoiceSchema.queryInvoicesOver99Cent}
-        ${invoiceSchema.queryInvoicesCustomerInfo}
-    }
-    type Mutation {
-        getAlbums: [Album]
-    }
-${artistSchema.type}
-${albumSchema.type}
-${customerSchema.type}
-${employeeSchema.type}
-${genreSchema.type}
-${invoiceSchema.type}
-${invoiceLineSchema.type}
-${mediaTypeSchema.type}
-${playlistSchema.type}
-${playlistTrackSchema.type}
-${trackSchema.type}
-${invoiceSchema.typeCustomerInfo}
-`
-
-module.exports = buildSchema(string)
-=======
-        albums: [Album]
+        albums(AlbumID: Int): [Album]
         artists: [Artist]
         customers: [Customer]
         employees: [Employee]
@@ -196,4 +162,3 @@ module.exports = buildSchema(string)
     }
 
 `)
->>>>>>> 99e52d247d0d35990993c7cfaaa591249ae1c4e6
