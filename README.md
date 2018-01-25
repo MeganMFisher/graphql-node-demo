@@ -94,52 +94,49 @@ Delete Artist
 
 ## Employee
 
-List all Employee first and last names only that live in Calgary.
-
-Find the first and last name and birthdate for the youngest employee.
-
-Find the first and last name and birthdate for the oldest employee.
-
-Find everyone that reports to Nancy Edwards (Use the ReportsTo column).
-You will need to query the employee table to find the Id for Nancy Edwards
-
-Count how many people live in Lethbridge.
-
-## Invoice
-
-Count how many orders were made from the USA.
-
-Find the largest order total amount.
-
-Find the smallest order total amount.
-
-Find all orders bigger than $5.
-
-Count how many orders were smaller than $5.
-
-Count how many orders were in CA, TX, or AZ (use IN).
-
-Get the average total of the orders.
-
-Get the total sum of the orders.
-
+Get Employees 
 
 <details>
+{employees}
+</details>
 
+Get Employee by LastName 
 
-Query: 
-
-query albums($id:String){
-  albums(Title: $id) {
-    AlbumId
-    ArtistId
-    Title
+<details>
+query employees($name:String){
+  employees(LastName: $name) {
+    LastName
   }
 }
 
 {
-  "id": "'For Those About To Rock We Salute You'"
+  "name": "'Edwards'"
+}
+</details>
+
+Create Employee
+
+<details></details>
+
+Update Employee's LastName
+
+<details>
+mutation updateEmployee($id: Int!, $Name: String!) {
+  updateEmployee(EmployeeId: $id, LastName: $Name) {
+    EmployeeId
+    FirstName
+    LastName
+  }
 }
 
 
+{
+  "id": 1,
+  "Name": "Flintstone"
+}
+
 </details>
+
+Delete Employee 
+
+<details></details>

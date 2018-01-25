@@ -1,17 +1,24 @@
 
-/*******************************************************************************
-   Chinook Database - Version 1.4
-   Script: Chinook_PostgreSql.sql
-   Description: Creates and populates the Chinook database.
-   DB Server: PostgreSql
-   Author: Luis Rocha
-   License: http://www.codeplex.com/ChinookDatabase/license
-********************************************************************************/
+-- // INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId") VALUES (1, N'Lu�s', N'Gon�alves', N'Embraer - Empresa Brasileira de Aeron�utica S.A.', N'Av. Brigadeiro Faria Lima, 2170', N'S�o Jos� dos Campos', N'SP', N'Brazil', N'12227-000', N'+55 (12) 3923-5555', N'+55 (12) 3923-5566', N'luisg@embraer.com.br', 3);
+
+-- // INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (1, N'Adams', N'Andrew', N'General Manager', '1962/2/18', '2002/8/14', N'11120 Jasper Ave NW', N'Edmonton', N'AB', N'Canada', N'T5K 2N1', N'+1 (780) 428-9482', N'+1 (780) 428-3457', N'andrew@chinookcorp.com');
+-- // INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (2, N'Edwards', N'Nancy', N'Sales Manager', 1, '1958/12/8', '2002/5/1', N'825 8 Ave SW', N'Calgary', N'AB', N'Canada', N'T2P 2T3', N'+1 (403) 262-3443', N'+1 (403) 262-3322', N'nancy@chinookcorp.com');
+-- // INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (3, N'Peacock', N'Jane', N'Sales Support Agent', 2, '1973/8/29', '2002/4/1', N'1111 6 Ave SW', N'Calgary', N'AB', N'Canada', N'T2P 5M5', N'+1 (403) 262-3443', N'+1 (403) 262-6712', N'jane@chinookcorp.com');
 
 
-/*******************************************************************************
-   Create Tables
-********************************************************************************/
+
+-- // INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (1, N'For Those About To Rock (We Salute You)', 1, 1, 1, N'Angus Young, Malcolm Young, Brian Johnson', 343719, 11170334, 0.99);
+
+
+-- // INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (1, N'Music');
+
+-- // INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1);
+
+-- // INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (1, 1, '2009/1/1', N'Theodor-Heuss-Stra�e 34', N'Stuttgart', N'Germany', N'70174', 1.98);
+
+-- // INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (1, 1, 1, 0.99, 1);
+
+
 CREATE TABLE "Album"
 (
     "AlbumId" INT NOT NULL,
@@ -132,14 +139,6 @@ CREATE TABLE "Track"
 );
 
 
-
-/*******************************************************************************
-   Create Primary Key Unique Indexes
-********************************************************************************/
-
-/*******************************************************************************
-   Create Foreign Keys
-********************************************************************************/
 ALTER TABLE "Album" ADD CONSTRAINT "FK_AlbumArtistId"
     FOREIGN KEY ("ArtistId") REFERENCES "Artist" ("ArtistId") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -194,9 +193,7 @@ ALTER TABLE "Track" ADD CONSTRAINT "FK_TrackMediaTypeId"
 CREATE INDEX "IFK_TrackMediaTypeId" ON "Track" ("MediaTypeId");
 
 
-/*******************************************************************************
-   Populate Tables
-********************************************************************************/
+
 INSERT INTO "Genre" ("GenreId", "Name") VALUES (1, N'Rock');
 INSERT INTO "Genre" ("GenreId", "Name") VALUES (2, N'Jazz');
 INSERT INTO "Genre" ("GenreId", "Name") VALUES (3, N'Metal');
@@ -223,11 +220,16 @@ INSERT INTO "Genre" ("GenreId", "Name") VALUES (23, N'Alternative');
 INSERT INTO "Genre" ("GenreId", "Name") VALUES (24, N'Classical');
 INSERT INTO "Genre" ("GenreId", "Name") VALUES (25, N'Opera');
 
+-- /////
+
 INSERT INTO "MediaType" ("MediaTypeId", "Name") VALUES (1, N'MPEG audio file');
 INSERT INTO "MediaType" ("MediaTypeId", "Name") VALUES (2, N'Protected AAC audio file');
 INSERT INTO "MediaType" ("MediaTypeId", "Name") VALUES (3, N'Protected MPEG-4 video file');
 INSERT INTO "MediaType" ("MediaTypeId", "Name") VALUES (4, N'Purchased AAC audio file');
 INSERT INTO "MediaType" ("MediaTypeId", "Name") VALUES (5, N'AAC audio file');
+
+
+-- /////
 
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (1, N'AC/DC');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (2, N'Accept');
@@ -279,6 +281,11 @@ INSERT INTO "Artist" ("ArtistId", "Name") VALUES (47, N'Hermeto Pascoal');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (48, N'Bar�o Vermelho');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (49, N'Edson, DJ Marky & DJ Patife Featuring Fernanda Porto');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (50, N'Metallica');
+
+----/////
+
+
+-- ///NOPE
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (51, N'Queen');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (52, N'Kiss');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (53, N'Spyro Gyra');
@@ -505,6 +512,9 @@ INSERT INTO "Artist" ("ArtistId", "Name") VALUES (273, N'C. Monteverdi, Nigel Ro
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (274, N'Nash Ensemble');
 INSERT INTO "Artist" ("ArtistId", "Name") VALUES (275, N'Philip Glass Ensemble');
 
+
+-- ///// 
+
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (1, N'For Those About To Rock We Salute You', 1);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (2, N'Balls to the Wall', 2);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (3, N'Restless and Wild', 2);
@@ -540,6 +550,9 @@ INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (32, N'Carnaval 2001
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (33, N'Chill: Brazil (Disc 1)', 24);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (34, N'Chill: Brazil (Disc 2)', 6);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (35, N'Garage Inc. (Disc 1)', 50);
+
+-- //// NOPE
+
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (36, N'Greatest Hits II', 51);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (37, N'Greatest Kiss', 52);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (38, N'Heart of the Night', 53);
@@ -852,6 +865,8 @@ INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (344, N'Schubert: Th
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (345, N'Monteverdi: L''Orfeo', 273);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (346, N'Mozart: Chamber Music', 274);
 INSERT INTO "Album" ("AlbumId", "Title", "ArtistId") VALUES (347, N'Koyaanisqatsi (Soundtrack from the Motion Picture)', 275);
+
+-- /////
 
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (1, N'For Those About To Rock (We Salute You)', 1, 1, 1, N'Angus Young, Malcolm Young, Brian Johnson', 343719, 11170334, 0.99);
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Milliseconds", "Bytes", "UnitPrice") VALUES (2, N'Balls to the Wall', 2, 2, 1, 342562, 5510424, 0.99);
@@ -1271,6 +1286,9 @@ INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Co
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (416, N'Whiskey In The Jar', 35, 1, 3, N'Traditional', 305005, 9943129, 0.99);
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (417, N'Tuesday''s Gone', 35, 1, 3, N'Collins/Van Zandt', 545750, 17900787, 0.99);
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (418, N'The More I See', 35, 1, 3, N'Molaney/Morris/Roberts/Wainwright', 287973, 9378873, 0.99);
+
+
+--/// NOpe
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (419, N'A Kind Of Magic', 36, 1, 1, N'Roger Taylor', 262608, 8689618, 0.99);
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (420, N'Under Pressure', 36, 1, 1, N'Queen & David Bowie', 236617, 7739042, 0.99);
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (421, N'Radio GA GA', 36, 1, 1, N'Roger Taylor', 343745, 11358573, 0.99);
@@ -4357,6 +4375,9 @@ INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Co
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (3502, N'Quintet for Horn, Violin, 2 Violas, and Cello in E Flat Major, K. 407/386c: III. Allegro', 346, 2, 24, N'Wolfgang Amadeus Mozart', 221331, 3665114, 0.99);
 INSERT INTO "Track" ("TrackId", "Name", "AlbumId", "MediaTypeId", "GenreId", "Composer", "Milliseconds", "Bytes", "UnitPrice") VALUES (3503, N'Koyaanisqatsi', 347, 2, 10, N'Philip Glass', 206005, 3305164, 0.99);
 
+
+-- /////
+
 INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (1, N'Adams', N'Andrew', N'General Manager', '1962/2/18', '2002/8/14', N'11120 Jasper Ave NW', N'Edmonton', N'AB', N'Canada', N'T5K 2N1', N'+1 (780) 428-9482', N'+1 (780) 428-3457', N'andrew@chinookcorp.com');
 INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (2, N'Edwards', N'Nancy', N'Sales Manager', 1, '1958/12/8', '2002/5/1', N'825 8 Ave SW', N'Calgary', N'AB', N'Canada', N'T2P 2T3', N'+1 (403) 262-3443', N'+1 (403) 262-3322', N'nancy@chinookcorp.com');
 INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (3, N'Peacock', N'Jane', N'Sales Support Agent', 2, '1973/8/29', '2002/4/1', N'1111 6 Ave SW', N'Calgary', N'AB', N'Canada', N'T2P 5M5', N'+1 (403) 262-3443', N'+1 (403) 262-6712', N'jane@chinookcorp.com');
@@ -4365,6 +4386,8 @@ INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "Reports
 INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (6, N'Mitchell', N'Michael', N'IT Manager', 1, '1973/7/1', '2003/10/17', N'5827 Bowness Road NW', N'Calgary', N'AB', N'Canada', N'T3B 0C5', N'+1 (403) 246-9887', N'+1 (403) 246-9899', N'michael@chinookcorp.com');
 INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (7, N'King', N'Robert', N'IT Staff', 6, '1970/5/29', '2004/1/2', N'590 Columbia Boulevard West', N'Lethbridge', N'AB', N'Canada', N'T1K 5N8', N'+1 (403) 456-9986', N'+1 (403) 456-8485', N'robert@chinookcorp.com');
 INSERT INTO "Employee" ("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") VALUES (8, N'Callahan', N'Laura', N'IT Staff', 6, '1968/1/9', '2004/3/4', N'923 7 ST NW', N'Lethbridge', N'AB', N'Canada', N'T1H 1Y8', N'+1 (403) 467-3351', N'+1 (403) 467-8772', N'laura@chinookcorp.com');
+
+-- ////
 
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId") VALUES (1, N'Lu�s', N'Gon�alves', N'Embraer - Empresa Brasileira de Aeron�utica S.A.', N'Av. Brigadeiro Faria Lima, 2170', N'S�o Jos� dos Campos', N'SP', N'Brazil', N'12227-000', N'+55 (12) 3923-5555', N'+55 (12) 3923-5566', N'luisg@embraer.com.br', 3);
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (2, N'Leonie', N'K�hler', N'Theodor-Heuss-Stra�e 34', N'Stuttgart', N'Germany', N'70174', N'+49 0711 2842222', N'leonekohler@surfeu.de', 5);
@@ -4386,6 +4409,8 @@ INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Company", "Addre
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId") VALUES (18, N'Michelle', N'Brooks', N'627 Broadway', N'New York', N'NY', N'USA', N'10012-2612', N'+1 (212) 221-3546', N'+1 (212) 221-4679', N'michelleb@aol.com', 3);
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId") VALUES (19, N'Tim', N'Goyer', N'Apple Inc.', N'1 Infinite Loop', N'Cupertino', N'CA', N'USA', N'95014', N'+1 (408) 996-1010', N'+1 (408) 996-1011', N'tgoyer@apple.com', 3);
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "State", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (20, N'Dan', N'Miller', N'541 Del Medio Avenue', N'Mountain View', N'CA', N'USA', N'94040-111', N'+1 (650) 644-3358', N'dmiller@comcast.com', 4);
+
+-- ///NOPE
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "State", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (21, N'Kathy', N'Chase', N'801 W 4th Street', N'Reno', N'NV', N'USA', N'89503', N'+1 (775) 223-7665', N'kachase@hotmail.com', 5);
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "State", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (22, N'Heather', N'Leacock', N'120 S Orange Ave', N'Orlando', N'FL', N'USA', N'32801', N'+1 (407) 999-7788', N'hleacock@gmail.com', 4);
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "State", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (23, N'John', N'Gordon', N'69 Salem Street', N'Boston', N'MA', N'USA', N'2113', N'+1 (617) 522-1333', N'johngordon22@yahoo.com', 4);
@@ -4426,41 +4451,47 @@ INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City"
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (58, N'Manoj', N'Pareek', N'12,Community Centre', N'Delhi', N'India', N'110017', N'+91 0124 39883988', N'manoj.pareek@rediff.com', 3);
 INSERT INTO "Customer" ("CustomerId", "FirstName", "LastName", "Address", "City", "Country", "PostalCode", "Phone", "Email", "SupportRepId") VALUES (59, N'Puja', N'Srivastava', N'3,Raj Bhavan Road', N'Bangalore', N'India', N'560001', N'+91 080 22289999', N'puja_srivastava@yahoo.in', 3);
 
+-- /////
+
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (1, 2, '2009/1/1', N'Theodor-Heuss-Stra�e 34', N'Stuttgart', N'Germany', N'70174', 1.98);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (2, 4, '2009/1/2', N'Ullev�lsveien 14', N'Oslo', N'Norway', N'0171', 3.96);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (3, 8, '2009/1/3', N'Gr�trystraat 63', N'Brussels', N'Belgium', N'1000', 5.94);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (4, 14, '2009/1/6', N'8210 111 ST NW', N'Edmonton', N'AB', N'Canada', N'T6G 2C7', 8.91);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (5, 23, '2009/1/11', N'69 Salem Street', N'Boston', N'MA', N'USA', N'2113', 13.86);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (6, 37, '2009/1/19', N'Berger Stra�e 10', N'Frankfurt', N'Germany', N'60316', 0.99);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (7, 38, '2009/2/1', N'Barbarossastra�e 19', N'Berlin', N'Germany', N'10779', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (8, 40, '2009/2/1', N'8, Rue Hanovre', N'Paris', N'France', N'75002', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (9, 42, '2009/2/2', N'9, Place Louis Barthou', N'Bordeaux', N'France', N'33000', 3.96);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "Total") VALUES (10, 46, '2009/2/3', N'3 Chatham Street', N'Dublin', N'Dublin', N'Ireland', 5.94);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (11, 52, '2009/2/6', N'202 Hoxton Street', N'London', N'United Kingdom', N'N1 5LH', 8.91);
+
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (5, 19, '2009/1/11', N'69 Salem Street', N'Boston', N'MA', N'USA', N'2113', 13.86);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (6, 7, '2009/1/19', N'Berger Stra�e 10', N'Frankfurt', N'Germany', N'60316', 0.99);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (7, 7, '2009/2/1', N'Barbarossastra�e 19', N'Berlin', N'Germany', N'10779', 1.98);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (8, 10, '2009/2/1', N'8, Rue Hanovre', N'Paris', N'France', N'75002', 1.98);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (9, 20, '2009/2/2', N'9, Place Louis Barthou', N'Bordeaux', N'France', N'33000', 3.96);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "Total") VALUES (10, 16, '2009/2/3', N'3 Chatham Street', N'Dublin', N'Dublin', N'Ireland', 5.94);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (11, 18, '2009/2/6', N'202 Hoxton Street', N'London', N'United Kingdom', N'N1 5LH', 8.91);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (12, 2, '2009/2/11', N'Theodor-Heuss-Stra�e 34', N'Stuttgart', N'Germany', N'70174', 13.86);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (13, 16, '2009/2/19', N'1600 Amphitheatre Parkway', N'Mountain View', N'CA', N'USA', N'94043-1351', 0.99);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (14, 17, '2009/3/4', N'1 Microsoft Way', N'Redmond', N'WA', N'USA', N'98052-8300', 1.98);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (15, 19, '2009/3/4', N'1 Infinite Loop', N'Cupertino', N'CA', N'USA', N'95014', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (16, 21, '2009/3/5', N'801 W 4th Street', N'Reno', N'NV', N'USA', N'89503', 3.96);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (17, 25, '2009/3/6', N'319 N. Frances Street', N'Madison', N'WI', N'USA', N'53703', 5.94);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (18, 31, '2009/3/9', N'194A Chain Lake Drive', N'Halifax', N'NS', N'Canada', N'B3S 1C5', 8.91);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (19, 40, '2009/3/14', N'8, Rue Hanovre', N'Paris', N'France', N'75002', 13.86);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (20, 54, '2009/3/22', N'110 Raeburn Pl', N'Edinburgh ', N'United Kingdom', N'EH4 1HH', 0.99);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (21, 55, '2009/4/4', N'421 Bourke Street', N'Sidney', N'NSW', N'Australia', N'2010', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "Total") VALUES (22, 57, '2009/4/4', N'Calle Lira, 198', N'Santiago', N'Chile', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (23, 59, '2009/4/5', N'3,Raj Bhavan Road', N'Bangalore', N'India', N'560001', 3.96);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (16, 11, '2009/3/5', N'801 W 4th Street', N'Reno', N'NV', N'USA', N'89503', 3.96);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (17, 15, '2009/3/6', N'319 N. Frances Street', N'Madison', N'WI', N'USA', N'53703', 5.94);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (18, 11, '2009/3/9', N'194A Chain Lake Drive', N'Halifax', N'NS', N'Canada', N'B3S 1C5', 8.91);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (19, 20, '2009/3/14', N'8, Rue Hanovre', N'Paris', N'France', N'75002', 13.86);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (20, 10, '2009/3/22', N'110 Raeburn Pl', N'Edinburgh ', N'United Kingdom', N'EH4 1HH', 0.99);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (21, 11, '2009/4/4', N'421 Bourke Street', N'Sidney', N'NSW', N'Australia', N'2010', 1.98);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "Total") VALUES (22, 7, '2009/4/4', N'Calle Lira, 198', N'Santiago', N'Chile', 1.98);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (23, 9, '2009/4/5', N'3,Raj Bhavan Road', N'Bangalore', N'India', N'560001', 3.96);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (24, 4, '2009/4/6', N'Ullev�lsveien 14', N'Oslo', N'Norway', N'0171', 5.94);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (25, 10, '2009/4/9', N'Rua Dr. Falc�o Filho, 155', N'S�o Paulo', N'SP', N'Brazil', N'01007-010', 8.91);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (26, 19, '2009/4/14', N'1 Infinite Loop', N'Cupertino', N'CA', N'USA', N'95014', 13.86);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (27, 33, '2009/4/22', N'5112 48 Street', N'Yellowknife', N'NT', N'Canada', N'X1A 1N6', 0.99);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "Total") VALUES (28, 34, '2009/5/5', N'Rua da Assun��o 53', N'Lisbon', N'Portugal', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (29, 36, '2009/5/5', N'Tauentzienstra�e 8', N'Berlin', N'Germany', N'10789', 1.98);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (30, 38, '2009/5/6', N'Barbarossastra�e 19', N'Berlin', N'Germany', N'10779', 3.96);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (31, 42, '2009/5/7', N'9, Place Louis Barthou', N'Bordeaux', N'France', N'33000', 5.94);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (32, 48, '2009/5/10', N'Lijnbaansgracht 120bg', N'Amsterdam', N'VV', N'Netherlands', N'1016', 8.91);
-INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "Total") VALUES (33, 57, '2009/5/15', N'Calle Lira, 198', N'Santiago', N'Chile', 13.86);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (27, 3, '2009/4/22', N'5112 48 Street', N'Yellowknife', N'NT', N'Canada', N'X1A 1N6', 0.99);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "Total") VALUES (28, 18, '2009/5/5', N'Rua da Assun��o 53', N'Lisbon', N'Portugal', 1.98);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (29, 6, '2009/5/5', N'Tauentzienstra�e 8', N'Berlin', N'Germany', N'10789', 1.98);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (30, 8, '2009/5/6', N'Barbarossastra�e 19', N'Berlin', N'Germany', N'10779', 3.96);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (31, 2, '2009/5/7', N'9, Place Louis Barthou', N'Bordeaux', N'France', N'33000', 5.94);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (32, 4, '2009/5/10', N'Lijnbaansgracht 120bg', N'Amsterdam', N'VV', N'Netherlands', N'1016', 8.91);
+INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "Total") VALUES (33, 4, '2009/5/15', N'Calle Lira, 198', N'Santiago', N'Chile', 13.86);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (34, 12, '2009/5/23', N'Pra�a Pio X, 119', N'Rio de Janeiro', N'RJ', N'Brazil', N'20040-020', 0.99);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (35, 13, '2009/6/5', N'Qe 7 Bloco G', N'Bras�lia', N'DF', N'Brazil', N'71020-677', 1.98);
+
+
+-- ///NOPE
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (36, 15, '2009/6/5', N'700 W Pender Street', N'Vancouver', N'BC', N'Canada', N'V6C 1G8', 1.98);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (37, 17, '2009/6/6', N'1 Microsoft Way', N'Redmond', N'WA', N'USA', N'98052-8300', 3.96);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (38, 21, '2009/6/7', N'801 W 4th Street', N'Reno', N'NV', N'USA', N'89503', 5.94);
@@ -4839,46 +4870,49 @@ INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (411, 44, '2013/12/14', N'Porthaninkatu 9', N'Helsinki', N'Finland', N'00530', 13.86);
 INSERT INTO "Invoice" ("InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingCountry", "BillingPostalCode", "Total") VALUES (412, 58, '2013/12/22', N'12,Community Centre', N'Delhi', N'India', N'110017', 1.99);
 
+
+-- /////
+
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (1, 1, 2, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (2, 1, 4, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (3, 2, 6, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (4, 2, 8, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (4, 2, 8, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (5, 2, 10, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (6, 2, 12, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (7, 3, 16, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (8, 3, 20, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (9, 3, 24, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (9, 3, 24, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (10, 3, 28, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (11, 3, 32, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (12, 3, 36, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (12, 3, 36, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (13, 4, 42, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (14, 4, 48, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (15, 4, 54, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (16, 4, 60, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (16, 4, 60, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (17, 4, 66, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (18, 4, 72, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (19, 4, 78, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (19, 4, 78, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (20, 4, 84, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (21, 4, 90, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (22, 5, 99, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (23, 5, 108, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (24, 5, 117, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (25, 5, 126, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (25, 5, 126, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (26, 5, 135, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (27, 5, 144, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (28, 5, 153, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (29, 5, 162, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (30, 5, 171, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (31, 5, 180, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (31, 5, 180, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (32, 5, 189, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (33, 5, 198, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (34, 5, 207, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (35, 5, 216, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (36, 6, 230, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (36, 6, 230, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (37, 7, 231, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (38, 7, 232, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (39, 8, 234, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (40, 8, 236, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (40, 8, 236, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (41, 9, 238, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (42, 9, 240, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (43, 9, 242, 0.99, 1);
@@ -4893,22 +4927,24 @@ INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice",
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (52, 11, 280, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (53, 11, 286, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (54, 11, 292, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (55, 11, 298, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (55, 11, 298, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (56, 11, 304, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (57, 11, 310, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (58, 11, 316, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (58, 11, 316, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (59, 11, 322, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (60, 12, 331, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (61, 12, 340, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (62, 12, 349, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (62, 12, 349, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (63, 12, 358, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (64, 12, 367, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (65, 12, 376, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (65, 12, 376, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (66, 12, 385, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (67, 12, 394, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (68, 12, 403, 0.99, 1);
+INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (68, 12, 403, 1.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (69, 12, 412, 0.99, 1);
-INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (70, 12, 421, 0.99, 1);
+
+
+-- //NOPE
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (71, 12, 430, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (72, 12, 439, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (73, 12, 448, 0.99, 1);
@@ -7080,6 +7116,8 @@ INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice",
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (2239, 411, 3163, 0.99, 1);
 INSERT INTO "InvoiceLine" ("InvoiceLineId", "InvoiceId", "TrackId", "UnitPrice", "Quantity") VALUES (2240, 412, 3177, 1.99, 1);
 
+-- /////
+
 INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (1, N'Music');
 INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (2, N'Movies');
 INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (3, N'TV Shows');
@@ -7098,6 +7136,9 @@ INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (15, N'Classical 101 - The 
 INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (16, N'Grunge');
 INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (17, N'Heavy Metal Classic');
 INSERT INTO "Playlist" ("PlaylistId", "Name") VALUES (18, N'On-The-Go 1');
+
+
+-- ///// NOPE
 
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3402);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3389);
@@ -7139,6 +7180,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3371);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3372);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3373);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3374);
+
+-- /// 
+
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 99);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 100);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 101);
@@ -7168,6 +7212,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 179);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 180);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 181);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 182);
+
+---////NOPE
+
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2591);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2592);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2593);
@@ -7490,6 +7537,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2587);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2588);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2589);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2590);
+
+-- /////
+
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 194);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 195);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 196);
@@ -7501,6 +7551,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 201);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 202);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 203);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 204);
+
+-- /// NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 891);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 892);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 893);
@@ -7761,6 +7813,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2253);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3357);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3350);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3349);
+
+-- ////
+
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 63);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 64);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 65);
@@ -7783,6 +7838,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 127);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 128);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 129);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 130);
+
+
+-- ///NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 842);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 843);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 844);
@@ -7888,6 +7946,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2528);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2529);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2530);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2531);
+
+----/////
+
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 379);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 391);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 376);
@@ -7898,6 +7959,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 404);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 406);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 380);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 394);
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 515);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 516);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 517);
@@ -7912,6 +7975,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 525);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 526);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 527);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 528);
+
+
+---//////
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 205);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 206);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 207);
@@ -7933,6 +7999,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 222);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 223);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 224);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 225);
+
+
+---/////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 715);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 716);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 717);
@@ -7963,6 +8032,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 741);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 742);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 743);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 744);
+
+
+-- ////
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 226);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 227);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 228);
@@ -8030,6 +8102,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 320);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 321);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 322);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 399);
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 851);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 852);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 853);
@@ -8467,6 +8541,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3161);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3162);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3163);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3164);
+
+
+-- //// 
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 77);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 78);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 79);
@@ -8521,6 +8598,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 190);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 191);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 192);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 193);
+
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1121);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1122);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1123);
@@ -8875,6 +8955,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3254);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3275);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3269);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3253);
+
+
+-- ///
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 323);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 324);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 325);
@@ -8889,6 +8972,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 333);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 334);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 335);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 336);
+
+
+-- //// NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3264);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3455);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3456);
@@ -8951,6 +9037,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1787);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1788);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1789);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1790);
+
+-- ///
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 282);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 283);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 284);
@@ -8982,6 +9070,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 309);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 310);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 311);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 312);
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2216);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2217);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 2218);
@@ -9009,6 +9099,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3048);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3049);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3050);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 3051);
+
+-- ////
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 1);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 6);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 7);
@@ -9085,6 +9177,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 95);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 96);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 97);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 98);
+
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 675);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 676);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (1, 677);
@@ -10602,6 +10697,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (3, 3219);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (3, 3220);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (3, 3221);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (3, 3222);
+
+
+-- ///
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 51);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 52);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 53);
@@ -10614,6 +10712,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 59);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 60);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 61);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 62);
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 798);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 799);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (5, 800);
@@ -12102,6 +12202,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 22);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 3411);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 3412);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 3419);
+
+-- ///
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 2);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 3);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 4);
@@ -12120,6 +12222,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 33);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 34);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 35);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 36);
+
+-- //NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 37);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 3256);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (8, 3350);
@@ -15773,7 +15877,6 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (15, 3425);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (15, 3426);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (15, 3427);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 3367);
-INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 52);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2194);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2195);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2198);
@@ -15787,6 +15890,9 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2005);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2007);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2010);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 2013);
+
+-- ////
+INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (16, 52);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 1);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 2);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 3);
@@ -15794,6 +15900,8 @@ INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 4);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 5);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 152);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 160);
+
+-- ////NOPE
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 1278);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 1283);
 INSERT INTO "PlaylistTrack" ("PlaylistId", "TrackId") VALUES (17, 1392);

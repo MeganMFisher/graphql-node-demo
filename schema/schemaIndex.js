@@ -55,11 +55,29 @@ module.exports = buildSchema(`
         Name: String
     }
 
+    input EmployeeInput {
+        EmployeeId: Int
+        LastName: String
+        FirstName: String
+        Title: String
+        ReportsTo: Int
+        BirthDate: String
+        HireDate: String
+        Address: String
+        City: String
+        State: String
+        Country: String
+        PostalCode: String
+        Phone: String
+        Fax: String
+        Email: String
+    }
+
     type Query {
         albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
         artists(ArtistId: Int, Name: String): [Artist]
         customers: [Customer]
-        employees: [Employee]
+        employees(ReportsTo: Int, LastName: String, Email: String): [Employee]
         genres: [Genre]
         invoiceLines: [InvoiceLine]
         invoices: [Invoice]
@@ -73,6 +91,9 @@ module.exports = buildSchema(`
         createArtist(input: ArtistInput): Artist
         updateArtist(ArtistId: Int!, Name: String!): Artist
         deleteArtist(ArtistId: Int!): Artist
+        createEmployee(input: EmployeeInput): Employee
+        updateEmployee(EmployeeId: Int!, LastName: String!): Employee
+        deleteEmployee(EmployeeId: Int!): Employee
     }
 
     type Album {
