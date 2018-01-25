@@ -14,7 +14,15 @@ var createArtist = function(args) {
     return psql.none(artistQuery)
 }
 
+var deleteArtist = function({ArtistId}) {
+    console.log(ArtistId)
+    const artistQuery = `delete from "Artist" where "ArtistId" = ${ArtistId};`
+    return psql.none(artistQuery)
+
+}
+
 module.exports = {
     artists: getArtists,
-    createArtist: createArtist
+    createArtist: createArtist,
+    deleteArtist: deleteArtist
 }

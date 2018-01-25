@@ -71,6 +71,7 @@ module.exports = buildSchema(`
 
     type Mutation {
         createArtist(input: ArtistInput): Artist
+        deleteArtist(ArtistId: Int!): Artist
     }
 
     type Album {
