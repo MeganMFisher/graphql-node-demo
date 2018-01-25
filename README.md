@@ -116,7 +116,28 @@ query employees($name:String){
 
 Create Employee
 
-<details></details>
+<details>
+mutation {
+  createEmployee(input: {
+      	EmployeeId: 11,
+    		LastName: "Flinstone",
+    		FirstName: "Fred",
+    		Title: "Manager",
+    		ReportsTo: 2,
+            Address: "11120 Jasper Ave NW",
+            City: "Edmonton",
+            State: "AB",
+            Country: "Canada",
+            PostalCode: "T5K 2N1",
+            Phone: "+1 (780) 428-9482",
+            Fax: "+1 (780) 428-3457",
+            Email: "andrew@chinookcorp.com"
+  }) {
+    LastName
+    FirstName
+  } 
+}
+</details>
 
 Update Employee's LastName
 
@@ -139,4 +160,6 @@ mutation updateEmployee($id: Int!, $Name: String!) {
 
 Delete Employee 
 
-<details></details>
+<details>
+
+</details>

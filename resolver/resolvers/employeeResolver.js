@@ -13,9 +13,9 @@ var getEmployees = (args) => {
 var createEmployee = (args) => {
     const {EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email} = args.input;
 
-    const employeeQuery = `insert into "Employee"("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") values(${EmployeeId}, '${LastName}', '${FirstName}', '${Title}', ${ReportsTo}, '${BirthDate}', '${HireDate}', '${Address}', '${City}', '${State}', '${Country}', '${PostalCode}', '${Phone}', '${Fax}', '${Email}') returning *;`
+    const employeeQuery = `insert into "Employee"("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") values(${EmployeeId}, '${LastName}', '${FirstName}', '${Title}', ${ReportsTo}, '${Address}', '${City}', '${State}', '${Country}', '${PostalCode}', '${Phone}', '${Fax}', '${Email}') returning *;`
 
-    return psql.manyOrNone(employeeQuery)    
+    return psql.one(employeeQuery)    
 }
 
 var updateEmployee = ({EmployeeId, LastName}) => {
