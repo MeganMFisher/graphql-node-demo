@@ -51,7 +51,7 @@ var { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
     type Query {
-        albums: [Album]
+        albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
         artists: [Artist]
         customers: [Customer]
         employees: [Employee]

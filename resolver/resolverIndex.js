@@ -12,7 +12,7 @@ const trackResolver = require('./resolvers/trackResolver');
 
 const obj = Object.assign({}, albumResolver, artistResolver, customerResolver, employeeResolver, genreResolver, invoiceResolver, invoiceLineResolver, mediaTypeResolver, playlistResolver, playlistTrackResolver, trackResolver)
 
-console.log(obj)
+// console.log(obj)
 
 module.exports = obj
 
