@@ -2,13 +2,31 @@
 
 ## Artist 
 
-Select 10 artists in reverse alphabetical order.
+Create new Artist
+
+<details>
+mutation {
+  createArtist(input: {
+        ArtistId: 780,
+    		Name: "HelloGoodbye"
+  }) {
+    ArtistId
+    Name
+  } 
+}
+</details>
 
 Select 5 artists in alphabetical order.
 
+<details></details>
+
 Select all artists that start with the word "Black".
 
+<details></details>
+
 Select all artists that contain the word "Black".
+
+<details></details>
 
 ## Employee
 

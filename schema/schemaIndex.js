@@ -50,6 +50,11 @@ var { buildSchema } = require('graphql');
 
 
 module.exports = buildSchema(`
+    input ArtistInput {
+        ArtistId: Int
+        Name: String
+    }
+
     type Query {
         albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
         artists: [Artist]
@@ -62,6 +67,10 @@ module.exports = buildSchema(`
         playlists: [Playlist]
         playlistTracks: [PlaylistTrack]
         tracks: [Track]
+    }
+
+    type Mutation {
+        createArtist(input: ArtistInput): Artist
     }
 
     type Album {
