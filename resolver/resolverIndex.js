@@ -25,7 +25,7 @@ const obj = Object.assign(
     trackResolver,
 )
 
-console.log(obj)
+// console.log(obj)
 
 module.exports = obj
 

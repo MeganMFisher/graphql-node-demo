@@ -1,7 +1,12 @@
 const psql = require('../../dbConnection');
 
 var getAlbums = function(args) {
-    const albumsQuery = 'select * from "Album"';
+    var albumsQuery = '';
+    if(args) {
+        albumsQuery = `select * from "Album" where "${Object.keys(args)[0]}" = ${args[Object.keys(args)[0]]}`
+    } else {
+        albumsQuery = 'select * from "Album"';
+    }
     return psql.manyOrNone(albumsQuery, [], function(e){
         return e
     });
@@ -10,3 +15,4 @@ var getAlbums = function(args) {
 module.exports = {
     albums: getAlbums
 }
+
