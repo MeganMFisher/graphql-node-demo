@@ -12,6 +12,40 @@ Get Artists
 
 </details>
 
+Get Artist by ArtistId 
+
+<details>
+
+query artists($id:Int){
+  artists(ArtistId: $id) {
+    ArtistId
+    Name
+  }
+}
+
+{
+  "id": 1
+}
+
+Get Artist by Name 
+
+<details>
+
+query artists($name:String){
+  artists(Name: $name) {
+    ArtistId
+    Name
+  }
+}
+
+{
+  "name": "'AC/DC'"
+}
+
+</details>
+
+</details>
+
 Create new Artist
 
 <details>

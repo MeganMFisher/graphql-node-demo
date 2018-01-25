@@ -2,7 +2,12 @@ const psql = require('../../dbConnection');
 
 
 var getArtists = function(args) {
-    const artistQuery = 'select * from "Artist"';
+    var artistQuery = ''
+    if(args) {
+        artistQuery = `select * from "Artist" where "${Object.keys(args)[0]}" = ${args[Object.keys(args)[0]]}`
+    } else { 
+        artistQuery = 'select * from "Artist"';
+    }
     return psql.manyOrNone(artistQuery, [], function(e){
         return e
     });
