@@ -10,8 +10,8 @@ var getArtists = function(args) {
 
 var createArtist = function(args) {
     const {ArtistId, Name} = args.input
-    const artistQuery = `insert into "Artist"("ArtistId", "Name") Values(${ArtistId}, '${Name}');`
-    return psql.none(artistQuery)
+    const artistQuery = `insert into "Artist"("ArtistId", "Name") Values(${ArtistId}, '${Name}') returning *;`
+    return psql.one(artistQuery)
 }
 
 var updateArtist = ({ArtistId, Name}) => {
@@ -19,8 +19,8 @@ var updateArtist = ({ArtistId, Name}) => {
 }
 
 var deleteArtist = function({ArtistId}) {
-    const artistQuery = `delete from "Artist" where "ArtistId" = ${ArtistId};`
-    return psql.none(artistQuery)
+    const artistQuery = `delete from "Artist" where "ArtistId" = ${ArtistId} returning *;`
+    return psql.one(artistQuery)
 }
 
 module.exports = {

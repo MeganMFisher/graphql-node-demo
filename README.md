@@ -2,6 +2,16 @@
 
 ## Artist 
 
+Get Artists 
+
+<details>
+
+{
+    artists
+}
+
+</details>
+
 Create new Artist
 
 <details>
@@ -16,17 +26,37 @@ mutation {
 }
 </details>
 
-Select 5 artists in alphabetical order.
+Update Artist
 
-<details></details>
+<details>
+mutation updateArtist($id: Int!, $Name: String!) {
+  updateArtist(ArtistId: $id, Name: $Name) {
+    ArtistId
+    Name
+  }
+}
 
-Select all artists that start with the word "Black".
+{
+  "id": 1,
+  "Name": "HelloGoodBye"
+}
+</details>
 
-<details></details>
+Delete Artist 
 
-Select all artists that contain the word "Black".
+<details>
 
-<details></details>
+ mutation deleteArtist($id: Int!) {
+      deleteArtist(ArtistId: $id) {
+        ArtistId
+      }
+  }
+
+  {
+      "id": 2
+  }
+</details>
+
 
 ## Employee
 
