@@ -5,5 +5,6 @@ module.exports = {
     type PlaylistTrack {
         PlaylistId: Int
         TrackId: Int
-    }`
+    }
+    `
 }
