@@ -39,7 +39,7 @@ query artists($id:Int){
   "id": 1
 }
 ```
-
+</details>
 <br/>
 
 Get Artist by Name 
