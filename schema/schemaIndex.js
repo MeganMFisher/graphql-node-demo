@@ -49,7 +49,7 @@ module.exports = buildSchema(`
 
     type Query {
         albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
-        customers(CustomerId: Int, Name: String, Email: String, SupportRepId: String): [Customer]
+        customers(CustomerId: Int, Name: String, Email: String, SupportRepId: Int): [Customer]
         artists(ArtistId: Int, Name: String): [Artist]
         employees(ReportsTo: Int, LastName: String, Email: String): [Employee]
         genres: [Genre]
