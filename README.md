@@ -6,9 +6,15 @@ Get Artists
 
 <details>
 
+<summary>Solution</summary>
+
+<br />
+
+```
 {
     artists
 }
+```
 
 </details>
 
@@ -103,18 +109,18 @@ Get Employees
 Get Employee by LastName 
 
 <details>
-mutation updateEmployee($id: Int!, $Name: String!) {
-  updateEmployee(EmployeeId: $id, LastName: $Name) {
-    EmployeeId
-    FirstName
+
+query employees($name:String){
+  employees(LastName: $name) {
     LastName
   }
 }
 
+
 {
-  "Name": "Richardson",
-  "id": 2
+  "name": "'Fred'"
 }
+
 </details>
 
 Create Employee
