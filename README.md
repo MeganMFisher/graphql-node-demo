@@ -18,9 +18,16 @@ Get Artists
 
 </details>
 
+<br />
+
 Get Artist by ArtistId 
 
 <details>
+<summary>Solution</summary>
+
+<br />
+
+```
 
 query artists($id:Int){
   artists(ArtistId: $id) {
@@ -32,10 +39,19 @@ query artists($id:Int){
 {
   "id": 1
 }
+```
+</details>
+<br/>
 
 Get Artist by Name 
 
 <details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
 
 query artists($name:String){
   artists(Name: $name) {
@@ -47,14 +63,21 @@ query artists($name:String){
 {
   "name": "'AC/DC'"
 }
+```
 
 </details>
 
-</details>
+<br/>
 
 Create new Artist
 
 <details>
+<summary>Solution</summary>
+
+<br />
+
+```    
+
 mutation {
   createArtist(input: {
         ArtistId: 780,
@@ -64,11 +87,21 @@ mutation {
     Name
   } 
 }
+```
+
 </details>
+
+<br/>
 
 Update Artist
 
 <details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
 mutation updateArtist($id: Int!, $Name: String!) {
   updateArtist(ArtistId: $id, Name: $Name) {
     ArtistId
@@ -80,11 +113,20 @@ mutation updateArtist($id: Int!, $Name: String!) {
   "id": 1,
   "Name": "HelloGoodBye"
 }
+```
 </details>
+
+<br/>
 
 Delete Artist 
 
 <details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
 
  mutation deleteArtist($id: Int!) {
       deleteArtist(ArtistId: $id) {
@@ -95,21 +137,36 @@ Delete Artist
   {
       "id": 2
   }
+```
 </details>
-
+<br/>
 
 ## Employee
 
 Get Employees 
 
 <details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
 {employees}
+```
 </details>
+
+<br/>
 
 Get Employee by LastName 
 
 <details>
+    
+<summary>Solution</summary>
 
+<br />
+
+```
 query employees($name:String){
   employees(LastName: $name) {
     LastName
@@ -121,11 +178,44 @@ query employees($name:String){
   "name": "'Fred'"
 }
 
+```
 </details>
+
+<br/>
+
+Get List of Employees who ReportTo the Same Person
+
+<details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
+query employees($id:Int){
+  employees(ReportsTo: $id) {
+    FirstName
+    LastName
+  }
+}
+
+{
+  "id": 2
+}
+```
+</details>
+
+<br/>
 
 Create Employee
 
 <details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
 mutation {
   createEmployee(input: {
       	EmployeeId: 11,
@@ -146,11 +236,18 @@ mutation {
     FirstName
   } 
 }
+```
 </details>
+<br/>
 
 Update Employee's LastName
 
 <details>
+<summary>Solution</summary>
+
+<br />
+
+```
 mutation updateEmployee($id: Int!, $Name: String!) {
   updateEmployee(EmployeeId: $id, LastName: $Name) {
     EmployeeId
@@ -164,12 +261,19 @@ mutation updateEmployee($id: Int!, $Name: String!) {
   "id": 1,
   "Name": "Flintstone"
 }
-
+```
 </details>
+
+<br/>
 
 Update Who the Employee ReportsTo
 
 <details>
+<summary>Solution</summary>
+
+<br />
+
+```
 mutation updateEmployee($id: Int!, $reportsTo: Int!) {
   updateEmployee(EmployeeId: $id, ReportsTo: $reportsTo) {
     EmployeeId
@@ -183,13 +287,20 @@ mutation updateEmployee($id: Int!, $reportsTo: Int!) {
   "reportsTo": 3,
   "id": 2
 }
-
+```
 </details>
+
+<br/>
 
 Delete Employee 
 
 <details>
+    
+<summary>Solution</summary>
 
+<br />
+
+```
  mutation deleteEmployee($id: Int!) {
       deleteEmployee(EmployeeId: $id) {
     		FirstName
@@ -199,5 +310,5 @@ Delete Employee
 {
   "id": 11
 }
-
+```
 </details>
