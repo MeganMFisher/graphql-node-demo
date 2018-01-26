@@ -103,14 +103,17 @@ Get Employees
 Get Employee by LastName 
 
 <details>
-query employees($name:String){
-  employees(LastName: $name) {
+mutation updateEmployee($id: Int!, $Name: String!) {
+  updateEmployee(EmployeeId: $id, LastName: $Name) {
+    EmployeeId
+    FirstName
     LastName
   }
 }
 
 {
-  "name": "'Edwards'"
+  "Name": "Richardson",
+  "id": 2
 }
 </details>
 
@@ -124,14 +127,14 @@ mutation {
     		FirstName: "Fred",
     		Title: "Manager",
     		ReportsTo: 2,
-            Address: "11120 Jasper Ave NW",
-            City: "Edmonton",
-            State: "AB",
-            Country: "Canada",
-            PostalCode: "T5K 2N1",
-            Phone: "+1 (780) 428-9482",
-            Fax: "+1 (780) 428-3457",
-            Email: "andrew@chinookcorp.com"
+        Address: "11120 Jasper Ave NW",
+        City: "Edmonton",
+        State: "AB",
+        Country: "Canada",
+        PostalCode: "T5K 2N1",
+        Phone: "+1 (780) 428-9482",
+        Fax: "+1 (780) 428-3457",
+        Email: "andrew@chinookcorp.com"
   }) {
     LastName
     FirstName
@@ -154,6 +157,25 @@ mutation updateEmployee($id: Int!, $Name: String!) {
 {
   "id": 1,
   "Name": "Flintstone"
+}
+
+</details>
+
+Update Who the Employee ReportsTo
+
+<details>
+mutation updateEmployee($id: Int!, $reportsTo: Int!) {
+  updateEmployee(EmployeeId: $id, ReportsTo: $reportsTo) {
+    EmployeeId
+    FirstName
+    LastName
+    ReportsTo
+  }
+}
+
+{
+  "reportsTo": 3,
+  "id": 2
 }
 
 </details>

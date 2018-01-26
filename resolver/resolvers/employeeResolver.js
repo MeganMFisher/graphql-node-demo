@@ -11,27 +11,28 @@ var getEmployees = (args) => {
 }
 
 var createEmployee = (args) => {
-    const {EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email} = args.input;
-
-   
+    const {EmployeeId, LastName, FirstName, Title, ReportsTo, Address, City, State, Country, PostalCode, Phone, Fax, Email} = args.input;
 
 
-    var date = new Date(BirthDate);
-    // var timestamp = date.getTime();
-
-    var date2 = new Date(HireDate)
-    // var timestamp2 = date2.getTime();
-
-    // console.log(timestamp)
-
-    const employeeQuery = `insert into "Employee"("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") values(${EmployeeId}, '${LastName}', '${FirstName}', '${Title}', ${ReportsTo}, ${date}, ${date2}, '${Address}', '${City}', '${State}', '${Country}', '${PostalCode}', '${Phone}', '${Fax}', '${Email}') returning *;`
+    const employeeQuery = `insert into "Employee"("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") values(${EmployeeId}, '${LastName}', '${FirstName}', '${Title}', ${ReportsTo}, '${Address}', '${City}', '${State}', '${Country}', '${PostalCode}', '${Phone}', '${Fax}', '${Email}') returning *;`
 
     return psql.one(employeeQuery)    
 }
 
-var updateEmployee = ({EmployeeId, LastName}) => {
-    return psql.one(`update "Employee" set "LastName" = '${LastName}' where "EmployeeId" = ${EmployeeId} returning *;`)
+var updateEmployee = (args) => {
+    var employeeQuery = ''
+    let update = `set `
+    Object.keys(args).map((e, i) => {
+        if(e !== 'EmployeeId'){
+            let type = typeof args[e]
+            update += `${i !== 1 ? ', ' : ''}"${e}" = ${type === 'number' ? args[e] : `'${args[e]}'`}`
+        }
+    })
+    employeeQuery = `update "Employee" ${update} where "EmployeeId" = ${args.EmployeeId} returning *`
+    return psql.one(employeeQuery);
 }
+
+
 
 var deleteEmployee = ({EmployeeId}) => {
     const employeeQuery = `delete from "Employee" where "EmployeeId" = ${EmployeeId} returning *;`
@@ -44,3 +45,4 @@ module.exports = {
     updateEmployee: updateEmployee,
     deleteEmployee: deleteEmployee
 }
+

@@ -92,7 +92,7 @@ module.exports = buildSchema(`
         updateArtist(ArtistId: Int!, Name: String!): Artist
         deleteArtist(ArtistId: Int!): Artist
         createEmployee(input: EmployeeInput): Employee
-        updateEmployee(EmployeeId: Int!, LastName: String!): Employee
+        updateEmployee(EmployeeId: Int!, LastName: String, FirstName: String, Title: String, ReportsTo: Int, Email: String): Employee
         deleteEmployee(EmployeeId: Int!): Employee
     }
 
