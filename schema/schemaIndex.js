@@ -50,11 +50,15 @@ var { buildSchema } = require('graphql');
 
 
 module.exports = buildSchema(`
-
     input AlbumInput {
         AlbumId: Int
         Title: String
         ArtistId: Int
+    }
+
+    input ArtistInput {
+        ArtistId: Int
+        Name: String
     }
 
     input CustomerInput {
@@ -73,11 +77,30 @@ module.exports = buildSchema(`
         SupportRepId: Int
     }
 
+    input EmployeeInput {
+        EmployeeId: Int
+        LastName: String
+        FirstName: String
+        Title: String
+        ReportsTo: Int
+        BirthDate: String
+        HireDate: String
+        Address: String
+        City: String
+        State: String
+        Country: String
+        PostalCode: String
+        Phone: String
+        Fax: String
+        Email: String
+
+    }
+
     type Query {
         albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
-        artists: [Artist]
         customers(CustomerId: Int, Name: String, Email: String, SupportRepId: String): [Customer]
-        employees: [Employee]
+        artists(ArtistId: Int, Name: String): [Artist]
+        employees(ReportsTo: Int, LastName: String, Email: String): [Employee]
         genres: [Genre]
         invoiceLines: [InvoiceLine]
         invoices: [Invoice]
@@ -95,6 +118,14 @@ module.exports = buildSchema(`
         createCustomer(input: CustomerInput): Customer
         updateCustomer(id: Int!, FirstName: String, LastName: String, Email: String, Phone: String, SupportRepId: Int): Customer
         deleteCustomer(id: Int!): Customer
+
+        createArtist(input: ArtistInput): Artist
+        updateArtist(ArtistId: Int!, Name: String!): Artist
+        deleteArtist(ArtistId: Int!): Artist
+
+        createEmployee(input: EmployeeInput): Employee
+        updateEmployee(EmployeeId: Int!, LastName: String, FirstName: String, Title: String, ReportsTo: Int, Email: String): Employee
+        deleteEmployee(EmployeeId: Int!): Employee
     }
 
     type Album {
