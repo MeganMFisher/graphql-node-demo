@@ -5,11 +5,16 @@
 Get Artists 
 
 <details>
+    
+<summary>Solution</summary>
 
+<br />
+
+```
 {
     artists
 }
-
+```
 </details>
 
 Get Artist by ArtistId 
