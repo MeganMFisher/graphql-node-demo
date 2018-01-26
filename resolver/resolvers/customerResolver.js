@@ -10,21 +10,19 @@ var getCustomers = function(args) {
     } else { 
         customerQuery = 'select * from "Customer"';
     }
-    return psql.manyOrNone(customerQuery, [], function(e){
-        return e
-    });
+    return psql.manyOrNone(customerQuery);
 }
 
 var createCustomer = async function(args){
     var albumsQuery = ''
-    let id = await psql.manyOrNone('select count(*) from "Customer"', [], function(e){
-        return e
-    });
-    id = +id[0].count + 1
-    customerQuery = `insert into "Customer" ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId") values (${id}, '${args.input.FirstName}', '${args.input.LastName}', '${args.input.Company}', '${args.input.Address}', '${args.input.City}', '${args.input.State}', '${args.input.Country}', '${args.input.PostalCode}', '${args.input.Phone}', '${args.input.Fax}', '${args.input.Email}', '${args.input.SupportRepId}');`
-    return psql.manyOrNone(customerQuery, [], function(e){
-        return e
-    });
+    let ids = await psql.manyOrNone('select "CustomerId" from "Customer"');
+    let max = 0
+    ids.map(e => {
+        if (e.CustomerId > max) max = e.CustomerId
+    })
+    max = +max + 1
+    customerQuery = `insert into "Customer" ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId") values (${max}, '${args.input.FirstName}', '${args.input.LastName}', '${args.input.Company}', '${args.input.Address}', '${args.input.City}', '${args.input.State}', '${args.input.Country}', '${args.input.PostalCode}', '${args.input.Phone}', '${args.input.Fax}', '${args.input.Email}', '${args.input.SupportRepId}') returning *;`
+    return psql.one(customerQuery);
 }
 
 var updateCustomer = function(args){
@@ -36,17 +34,13 @@ var updateCustomer = function(args){
             update += `${i !== 1 ? ', ' : ''}"${e}" = ${type === 'number' ? args[e] : `'${args[e]}'`}`
         }
     })
-    customerQuery = `update "Customer" ${update} where "CustomerId" = ${args.id}`
-    return psql.manyOrNone(customerQuery, [], function(e){
-        return e
-    });
+    customerQuery = `update "Customer" ${update} where "CustomerId" = ${args.id} returning *`
+    return psql.one(customerQuery);
 }
 
 var deleteCustomer = function(args){
-    var customerQuery = `delete from "Customer" where "CustomerId" = ${args.id}`
-    return psql.manyOrNone(customerQuery, [], function(e){
-        return e
-    });
+    var customerQuery = `delete from "Customer" where "CustomerId" = ${args.id} returning *;`
+    return psql.one(customerQuery);
 }
 
 

@@ -89,12 +89,12 @@ module.exports = buildSchema(`
 
     type Mutation {
         createAlbum(input: AlbumInput): Album
-        updateAlbum(id: Int!, title: String, artistId: Int): Album
-        deleteAlbum(id: Int!): [Album]
+        updateAlbum(id: Int!, Title: String, ArtistId: Int): Album
+        deleteAlbum(id: Int!): Album
 
         createCustomer(input: CustomerInput): Customer
         updateCustomer(id: Int!, FirstName: String, LastName: String, Email: String, Phone: String, SupportRepId: Int): Customer
-        deleteCustomer(id: Int!): [Customer]
+        deleteCustomer(id: Int!): Customer
     }
 
     type Album {
