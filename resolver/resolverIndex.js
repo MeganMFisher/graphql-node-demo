@@ -10,7 +10,20 @@ const playlistResolver = require('./resolvers/playlistResolver');
 const playlistTrackResolver = require('./resolvers/playlistTrackResolver');
 const trackResolver = require('./resolvers/trackResolver');
 
-const obj = Object.assign({}, albumResolver, artistResolver, customerResolver, employeeResolver, genreResolver, invoiceResolver, invoiceLineResolver, mediaTypeResolver, playlistResolver, playlistTrackResolver, trackResolver)
+const obj = Object.assign(
+    {}, 
+    albumResolver, 
+    artistResolver, 
+    customerResolver, 
+    employeeResolver, 
+    genreResolver, 
+    invoiceResolver, 
+    invoiceLineResolver, 
+    mediaTypeResolver, 
+    playlistResolver, 
+    playlistTrackResolver, 
+    trackResolver,
+)
 
 // console.log(obj)
 
