@@ -50,10 +50,33 @@ var { buildSchema } = require('graphql');
 
 
 module.exports = buildSchema(`
+
+    input AlbumInput {
+        AlbumId: Int
+        Title: String
+        ArtistId: Int
+    }
+
+    input CustomerInput {
+        CustomerId: Int,
+        FirstName: String,
+        LastName: String,
+        Company: String,
+        Address: String,
+        City: String,
+        State: String,
+        Country: String,
+        PostalCode: String,
+        Phone: String,
+        Fax: String,
+        Email: String,
+        SupportRepId: Int
+    }
+
     type Query {
         albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
         artists: [Artist]
-        customers: [Customer]
+        customers(CustomerId: Int, Name: String, Email: String, SupportRepId: String): [Customer]
         employees: [Employee]
         genres: [Genre]
         invoiceLines: [InvoiceLine]
@@ -62,6 +85,16 @@ module.exports = buildSchema(`
         playlists: [Playlist]
         playlistTracks: [PlaylistTrack]
         tracks: [Track]
+    }
+
+    type Mutation {
+        createAlbum(input: AlbumInput): Album
+        updateAlbum(id: Int!, title: String, artistId: Int): Album
+        deleteAlbum(id: Int!): [Album]
+
+        createCustomer(input: CustomerInput): Customer
+        updateCustomer(id: Int!, FirstName: String, LastName: String, Email: String, Phone: String, SupportRepId: Int): Customer
+        deleteCustomer(id: Int!): [Customer]
     }
 
     type Album {
