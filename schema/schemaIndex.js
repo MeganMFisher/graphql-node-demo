@@ -50,9 +50,31 @@ var { buildSchema } = require('graphql');
 
 
 module.exports = buildSchema(`
+    input AlbumInput {
+        AlbumId: Int
+        Title: String
+        ArtistId: Int
+    }
+
     input ArtistInput {
         ArtistId: Int
         Name: String
+    }
+
+    input CustomerInput {
+        CustomerId: Int,
+        FirstName: String,
+        LastName: String,
+        Company: String,
+        Address: String,
+        City: String,
+        State: String,
+        Country: String,
+        PostalCode: String,
+        Phone: String,
+        Fax: String,
+        Email: String,
+        SupportRepId: Int
     }
 
     input EmployeeInput {
@@ -71,12 +93,13 @@ module.exports = buildSchema(`
         Phone: String
         Fax: String
         Email: String
+
     }
 
     type Query {
         albums(AlbumId: Int, ArtistId: Int, Title: String): [Album]
+        customers(CustomerId: Int, Name: String, Email: String, SupportRepId: String): [Customer]
         artists(ArtistId: Int, Name: String): [Artist]
-        customers: [Customer]
         employees(ReportsTo: Int, LastName: String, Email: String): [Employee]
         genres: [Genre]
         invoiceLines: [InvoiceLine]
@@ -88,9 +111,18 @@ module.exports = buildSchema(`
     }
 
     type Mutation {
+        createAlbum(input: AlbumInput): Album
+        updateAlbum(id: Int!, Title: String, ArtistId: Int): Album
+        deleteAlbum(id: Int!): Album
+
+        createCustomer(input: CustomerInput): Customer
+        updateCustomer(id: Int!, FirstName: String, LastName: String, Email: String, Phone: String, SupportRepId: Int): Customer
+        deleteCustomer(id: Int!): Customer
+
         createArtist(input: ArtistInput): Artist
         updateArtist(ArtistId: Int!, Name: String!): Artist
         deleteArtist(ArtistId: Int!): Artist
+
         createEmployee(input: EmployeeInput): Employee
         updateEmployee(EmployeeId: Int!, LastName: String!, FirstName: String!, Title: String!, ReportsTo: Int!, Email: String!): Employee
         deleteEmployee(EmployeeId: Int!): Employee
