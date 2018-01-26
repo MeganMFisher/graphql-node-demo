@@ -4,7 +4,7 @@ const psql = require('../../dbConnection');
 var getArtists = (args) => {
     var artistQuery = ''
     if(args[Object.keys(args)[0]]) {
-        artistQuery = `select * from "Artist" where "${Object.keys(args)[0]}" = ${args[Object.keys(args)[0]]}`
+        artistQuery = `select * from "Artist" where "${Object.keys(args)[0]}" = ${args[Object.keys(args)[0]] === 'number' ? args[Object.keys(args)[0]] : `'${args[Object.keys(args)[0]] }'`}`
     } else { 
         artistQuery = 'select * from "Artist"';
     }

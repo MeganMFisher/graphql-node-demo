@@ -61,7 +61,7 @@ query artists($name:String){
 }
 
 {
-  "name": "'AC/DC'"
+  "name": "AC/DC"
 }
 ```
 
@@ -169,13 +169,14 @@ Get Employee by LastName
 ```
 query employees($name:String){
   employees(LastName: $name) {
+    FirstName
     LastName
   }
 }
 
 
 {
-  "name": "'Fred'"
+  "name": "Fred"
 }
 
 ```
