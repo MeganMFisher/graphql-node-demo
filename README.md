@@ -162,4 +162,14 @@ Delete Employee
 
 <details>
 
+ mutation deleteEmployee($id: Int!) {
+      deleteEmployee(EmployeeId: $id) {
+    		FirstName
+      }
+  }
+
+{
+  "id": 11
+}
+
 </details>

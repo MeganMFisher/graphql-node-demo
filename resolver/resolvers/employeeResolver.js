@@ -13,7 +13,18 @@ var getEmployees = (args) => {
 var createEmployee = (args) => {
     const {EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email} = args.input;
 
-    const employeeQuery = `insert into "Employee"("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") values(${EmployeeId}, '${LastName}', '${FirstName}', '${Title}', ${ReportsTo}, '${Address}', '${City}', '${State}', '${Country}', '${PostalCode}', '${Phone}', '${Fax}', '${Email}') returning *;`
+   
+
+
+    var date = new Date(BirthDate);
+    // var timestamp = date.getTime();
+
+    var date2 = new Date(HireDate)
+    // var timestamp2 = date2.getTime();
+
+    // console.log(timestamp)
+
+    const employeeQuery = `insert into "Employee"("EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email") values(${EmployeeId}, '${LastName}', '${FirstName}', '${Title}', ${ReportsTo}, ${date}, ${date2}, '${Address}', '${City}', '${State}', '${Country}', '${PostalCode}', '${Phone}', '${Fax}', '${Email}') returning *;`
 
     return psql.one(employeeQuery)    
 }
