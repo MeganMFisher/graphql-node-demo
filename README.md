@@ -64,9 +64,9 @@ query artists($name:String){
 }
 ```
 
-<br/>
-
 </details>
+
+<br/>
 
 Create new Artist
 
@@ -265,10 +265,13 @@ mutation updateEmployee($id: Int!, $reportsTo: Int!) {
 }
 ```
 </details>
+
 <br/>
+
 Delete Employee 
 
 <details>
+    
 <summary>Solution</summary>
 
 <br />
