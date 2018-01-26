@@ -3,7 +3,7 @@ const psql = require('../../dbConnection');
 var getEmployees = (args) => {
     var artistQuery = ''
     if(args[Object.keys(args)[0]]){
-        employeeQuery = `select * from "Employee" where "${Object.keys(args)[0]}" = ${args[Object.keys(args)[0]]}`
+        employeeQuery = `select * from "Employee" where "${Object.keys(args)[0]}" = ${args[Object.keys(args)[0]] === 'number' ? args[Object.keys(args)[0]] : `'${args[Object.keys(args)[0]] }'`}`
     } else { 
         employeeQuery = 'select * from "Employee"';
     }

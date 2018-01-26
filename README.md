@@ -5,7 +5,7 @@
 Get Artists 
 
 <details>
-    
+
 <summary>Solution</summary>
 
 <br />
@@ -15,6 +15,7 @@ Get Artists
     artists
 }
 ```
+
 </details>
 
 <br />
@@ -166,16 +167,39 @@ Get Employee by LastName
 <br />
 
 ```
-mutation updateEmployee($id: Int!, $Name: String!) {
-  updateEmployee(EmployeeId: $id, LastName: $Name) {
-    EmployeeId
+query employees($name:String){
+  employees(LastName: $name) {
+    LastName
+  }
+}
+
+
+{
+  "name": "'Fred'"
+}
+
+```
+</details>
+
+<br/>
+
+Get List of Employees who ReportTo the Same Person
+
+<details>
+    
+<summary>Solution</summary>
+
+<br />
+
+```
+query employees($id:Int){
+  employees(ReportsTo: $id) {
     FirstName
     LastName
   }
 }
 
 {
-  "Name": "Richardson",
   "id": 2
 }
 ```
